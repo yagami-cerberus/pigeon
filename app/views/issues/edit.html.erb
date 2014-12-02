@@ -1,0 +1,12 @@
+<h3><%= t :'issue.edit'%></h3>
+<hr />
+
+<%= form_for @issue, url: {action: 'update'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= render 'issues/editor', :f => f %>
+  <hr />
+  <div class="form-group text-right">
+    <button type='submit' class='btn btn-sm btn-primary'>
+      Save
+    </button>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+
+.bundle-contents {
+    border-radius: 5px;
+    margin-top: 10px;
+
+    &.danger {
+        background-color: #f2dede;
+    }
+    
+    &.hover {
+        &:hover {
+            background-color: #eee;
+            border-color: #ebccd1;
+        }
+    }
+    
+    .operation {
+        float: right;
+        display: none;
+    }
+    
+    &:hover {
+        .operation {
+            display: block;
+        }
+    }
+}

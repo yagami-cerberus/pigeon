@@ -1,0 +1,20 @@
+<div class="form-group">
+  <%= f.label :name, 'Title', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <%= f.text_field :name, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :order, 'Order', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <%= f.text_field :order, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<hr />
+<div class="form-group">
+  <div class="col-xs-2 control-label">Group</div>
+  <div class="col-xs-10 form-control-static">Permissions</div>
+</div>
+<%= f.fields_for :issue_status_permissions do |perimssion_f| %>
+  <%= render 'settings/issue_statuses/group_permission_editor', :f => perimssion_f %>
+<% end %>

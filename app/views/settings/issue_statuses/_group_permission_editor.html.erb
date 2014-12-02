@@ -1,0 +1,38 @@
+<div class="form-group">
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :group_id %>
+  <div class="col-xs-2 control-label"><%= f.object.group.name %></div>
+  <div class="col-xs-10 form-control-static">
+    <div>
+      <label>
+        <%= f.check_box :view_issue, checked_value: true, unchecked_value: nil %>
+        View issue
+      </label>
+      <label>
+        <%= f.check_box :create_issue %>
+        Create issue
+      </label>
+      <label>
+        <%= f.check_box :edit_issue %>
+        Edit issue
+      </label>
+      <label>
+        <%= f.check_box :fill_up_values %>
+        Fill up values
+      </label>
+      <label>
+        <%= f.check_box :submit_values %>
+        Submit values
+      </label>
+      <label>
+        <%= f.check_box :delete_issue %>
+        Delete issue
+      </label>
+    </div>
+    <div class="container-fluid">
+      <div class="form-group">
+        <%= f.select :issue_status_ids, IssueStatus.all.pluck(:name, :id), {}, { :multiple => true, :class => 'form-control form-control-sm' } %>
+      </div>
+    </div>
+  </div>
+</div>

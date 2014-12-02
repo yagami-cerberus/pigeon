@@ -1,0 +1,11 @@
+<h3><%= t :'inspection.edit_bundle'%></h3>
+<hr />
+<%= form_for @bundle, url: {action: 'update'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= hidden_field_tag :refer, params[:refer] %>
+  <%= render 'settings/inspection_bundle/editor', :f => f %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type='submit' class='btn btn-sm btn-primary'>Save</button>
+    </div>
+  </div>
+<% end %>

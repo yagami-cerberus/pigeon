@@ -1,0 +1,13 @@
+<div class="form-group">
+  <%= f.label :name, 'Name', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :name, :class => 'form-control input-sm', :placeholder => 'Group Name' %>
+  </div>
+</div>
+<h4>Permissions</h4>
+<hr />
+<div class="form-group">
+  <% [:manage_users, :manage_products].each do |item| %>
+    <label class="col-sm-3"><%= f.check_box :system_flags_items, { :multiple => true }, 1 << @group.system_flags_map[item], nil %> <%= item%></label>
+  <% end %>
+</div>

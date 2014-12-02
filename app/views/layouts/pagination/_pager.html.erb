@@ -1,0 +1,32 @@
+<ul class="pagination">
+  <%= render_page_number(current_page - 1, enabled: (current_page > 0), symbol: "«") %>
+  <% if page_size < 10 %>
+    <% (0..(page_size - 1)).each do |p| %>
+      <%= render_page_number(p, actived: current_page == p) %>
+    <% end %>
+  <% else %>
+    <%= render_page_number(0, actived: current_page == 0) %>
+    <% if current_page > 4 %>
+      <% if current_page - 11 > 0 %>
+        <%= render_page_number('', enabled: false, symbol: '...') %>
+        <%= render_page_number(current_page - 10) %>
+      <% end %>
+      <%= render_page_number('', enabled: false, symbol: '...') %>
+    <% end %>
+    
+    <% ([1, current_page - 3].max..[page_size - 2, current_page + 3].min).each do |p|%>
+      <%= render_page_number(p, actived: current_page == p) %>
+    <% end %>
+    
+    <% if current_page < page_size - 4 %>
+      <% if current_page + 12 < page_size %>
+        <%= render_page_number('', enabled: false, symbol: '...') %>
+        <%= render_page_number(current_page + 10) %>
+      <% end %>
+      <%= render_page_number('', enabled: false, symbol: '...') %>
+    <% end %>
+    <%= render_page_number(page_size - 1, actived: page_size - 1 == current_page) %>
+  <% end %>
+  
+  <%= render_page_number(current_page + 1, enabled: (current_page + 1) < page_size, symbol: "»") %>
+</ul>

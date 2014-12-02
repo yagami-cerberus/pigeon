@@ -1,0 +1,75 @@
+<div class="form-group">
+  <%= f.label :title, 'Title', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <%= f.text_field :title, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :group_name, 'Group Name', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <div class="input-group" data-gn="<%= f.hash %>">
+      <%= f.text_field :group_name, :class => 'form-control input-sm' %>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <% InspectionBundle.group_names.each do |n| %>
+            <li><a href="javascript: void(0)"><%= n %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :code, 'Code', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :code, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<hr />
+<div class="form-group">
+  <div class="col-sm-12">
+    <h4>Inspection Catalogs</h4>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-12">
+    <table class="table table-responsive">
+      <thead>
+        <th>Code</th><th>Catalog</th><th>Details</th>
+      </thead>
+      <tbody>
+        <% InspectionItem.all.each do |c| %>
+        <tr>
+          <td>
+            <%= f.check_box :item_ids, { :multiple => true }, c.id, nil %>
+            <%= c.code %>
+          </td>
+          <td><%= c.title%></td>
+          <td><%= c.inspection_atoms.pluck(:title).join(", ") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+// Group name select
+$(function() {
+  $("[data-gn=<%= f.hash %>]").text_input_options("input", "a");
+});
+
+// Inspection Catalog UI
+$(function() {
+  $("table tr").bind("update-ui", function() {
+    if($("input:checked" ,$(this)).length > 0) {
+      $(this).addClass("success");
+    } else {
+      $(this).removeClass("success");
+    }
+  });
+  $("table input[type=checkbox]").bind("change", function() {
+    $(this).trigger("update-ui");
+  }).trigger("update-ui");
+});
+</script>

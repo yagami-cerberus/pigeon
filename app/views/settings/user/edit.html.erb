@@ -1,0 +1,10 @@
+<h1><%= t :'user.edit_user'%> <%= @user.username %></h1>
+<hr />
+
+<%= form_for [:settings, @user], html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= hidden_field_tag :refer, params[:refer] %>
+  <%= render 'settings/user/editor', :f => f %>
+  <button type='submit' class='btn btn-sm btn-success'>
+    Save
+  </button>
+<% end %>

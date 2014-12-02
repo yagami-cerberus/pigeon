@@ -1,0 +1,2 @@
+module Settings::GroupHelper
+end

@@ -1,0 +1,10 @@
+<div id="bundles">
+  <div class="container-fluid">
+    <h5><i class="fa fa-cubes"></i> [<%= b.code %>] <%= b.title %></h5>
+    <div class="container">
+      <% b.inspection_items.each do |c| %>
+        <div><i class="fa fa-cube"></i> <%= c.title %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

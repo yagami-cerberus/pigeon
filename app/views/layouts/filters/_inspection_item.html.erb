@@ -1,0 +1,11 @@
+<form class="form-inline" data-form="filters" role="form">
+  <div class="form-group">
+    <%= text_field :filter, :q, class: 'form-control input-sm', placeholder: t(:'shared.search') %>
+  </div>
+  <div class="form-group">
+    <%= select :filter, :group, InspectionItem.group_names, {include_blank: 'Group'}, class: 'form-control input-sm' %>
+  </div>
+  <button class='btn btn-default btn-sm' type='submit'>
+    <%= t(:'shared.search')%>
+  </button>
+</form>

@@ -1,0 +1,30 @@
+gene_weight_bundle:
+  title: "Weight Loss Gene Detect"
+  group_name: "Gene"
+  code: "PG001"
+  item_ids: [101]
+
+gene_antioxidant_bundle:
+  title: "Antioxidant Gene Detect"
+  group_name: "Gene"
+  code: "PG002"
+  item_ids: [102]
+
+gene_all_bundle:
+  title: "All Gene Detect"
+  group_name: "Gene"
+  code: "PG003"
+  item_ids: [101, 102]
+
+bio_hb_bundle:
+  title: "HBe"
+  group_name: "Biochemical"
+  code: "PB001"
+  item_ids: [201, 202, 203]
+
+bio_allergy_bundle:
+  title: "Allergy"
+  group_name: "Biochemical"
+  code: "PB002"
+  item_ids: [204]
+  

@@ -1,0 +1,9 @@
+<h1><%= t :'group.create_group'%></h1>
+<hr />
+
+<%= form_for [:settings, @group], url: {action: 'create'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= render 'settings/group/editor', :f => f %>
+  <button type='submit' class='btn btn-sm btn-success'>
+    Create
+  </button>
+<% end %>

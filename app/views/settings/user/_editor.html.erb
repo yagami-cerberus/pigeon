@@ -1,0 +1,26 @@
+<div class="form-group">
+  <%= f.label :name, 'Name', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :name, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :email, 'E-mail', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :email, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :groups, 'Groups', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-10 form-control-static">
+    <div class="row">
+      <% Group.all.each do |g| %>
+        <label class="col-sm-3">
+          <%= f.check_box :group_ids, { :multiple => true }, g.id, nil %>
+          <%= g.name %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+  
+</div>

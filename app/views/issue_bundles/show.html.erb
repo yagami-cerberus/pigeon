@@ -1,0 +1,34 @@
+<h3>Inspection#<%= @bundle.id%> <%= @bundle.title %></h3>
+<hr />
+<h4><i class="fa fa-info"></i> Inspection</h4>
+<div class="container-fluid form-horizontal">
+  Issue: #<%= @bundle.issue_id %>
+</div>
+<hr />
+
+<h4><i class="fa fa-cubes"></i> Items</h4>
+<%= form_for @bundle, {action: 'update'} do %>
+  <table class="table">
+    <tbody>
+    <% @bundle.inspections.each do |item, atoms| %>
+      <tr><th colspan=3><%= item.title %></th></tr>
+      <% atoms.each do |a| %>
+      <tr>
+        <td>
+          <%= a.title %>
+        </td>
+        <td>
+          <%= inspection_type_field a, "item" %>
+        </td>
+        <td>
+          <% if a.editor %>
+          <%= a.editor.name %> at <%=f_datetime(a.updated_at)%>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  <button type="submit">GO</button>
+<% end %>

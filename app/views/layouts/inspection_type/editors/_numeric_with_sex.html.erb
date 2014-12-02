@@ -1,0 +1,42 @@
+<div class="form-group">
+  <div class="col-sm-1 col-sm-offset-2">
+    <label class="label label-default">Limitation</label>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-10 col-sm-offset-2 form-inline">
+    <%= f.text_field :limit_lowerbound, :class => 'form-control input-sm' %>
+    <%= f.select :limit_lowerbound_op, [['', ''], ['<', 'g'], ['≤', 'ge']], {}, :class => 'form-control input-sm'%>
+    VALUE
+    <%= f.select :limit_upbound_op, [['', ''], ['<', 'l'], ['≤', 'le']], {}, :class => 'form-control input-sm'%>
+    <%= f.text_field :limit_upbound, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-1 col-sm-offset-2">
+    <label class="label label-primary">Male Normal Range</label>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-10 col-sm-offset-2 form-inline">
+    <%= f.text_field :male_lowerbound, :class => 'form-control input-sm' %>
+    <%= f.select :male_lowerbound_op, [['', ''], ['<', 'g'], ['≤', 'ge']], {}, :class => 'form-control input-sm'%>
+    VALUE
+    <%= f.select :male_upbound_op, [['', ''], ['<', 'l'], ['≤', 'le']], {}, :class => 'form-control input-sm'%>
+    <%= f.text_field :male_upbound, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-1 col-sm-offset-2">
+    <label class="label label-danger">Female Normal Range</label>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-10 col-sm-offset-2 form-inline">
+    <%= f.text_field :female_lowerbound, :class => 'form-control input-sm' %>
+    <%= f.select :female_lowerbound_op, [['', ''], ['<', 'g'], ['≤', 'ge']], {}, :class => 'form-control input-sm'%>
+    VALUE
+    <%= f.select :female_upbound_op, [['', ''], ['<', 'l'], ['≤', 'le']], {}, :class => 'form-control input-sm'%>
+    <%= f.text_field :female_upbound, :class => 'form-control input-sm' %>
+  </div>
+</div>

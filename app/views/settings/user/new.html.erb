@@ -1,0 +1,16 @@
+<h1><%= t :'user.create_user'%></h1>
+<hr />
+
+<%= form_for [:settings, @user], url: {action: 'create'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :username, 'Username', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-4">
+      <%= f.text_field :username, :class => 'form-control input-sm' %>
+    </div>
+  </div>
+  <%= render 'settings/user/password', :f => f %>
+  <%= render 'settings/user/editor', :f => f %>
+  <button type='submit' class='btn btn-sm btn-success'>
+    Create
+  </button>
+<% end %>

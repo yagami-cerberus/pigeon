@@ -1,0 +1,57 @@
+<div class="form-group">
+  <%= f.label :title, 'Title', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <%= f.text_field :title, :class => 'form-control input-sm' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :sample_type, 'Sample Type', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <div class="input-group" data-gn="<%= f.hash %>">
+      <%= f.text_field :sample_type, :class => 'form-control input-sm' %>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li><a href="javascript: void(0)">Swap</a></li>
+          <li><a href="javascript: void(0)">Blood</a></li>
+          <li><a href="javascript: void(0)">Saliva</a></li>
+          <li><a href="javascript: void(0)">DNA</a></li>
+          <li><a href="javascript: void(0)">Tissue</a></li>
+          <li><a href="javascript: void(0)">Serum</a></li>
+          <li><a href="javascript: void(0)">Plasma</a></li>
+          <li><a href="javascript: void(0)">FFPE Tissue</a></li>
+          <li><a href="javascript: void(0)">Cell</a></li>
+          <li><a href="javascript: void(0)">Medium</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :group_name, 'Group Name', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <div class="input-group" data-gn="<%= f.hash %>">
+      <%= f.text_field :group_name, :class => 'form-control input-sm' %>
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <% InspectionItem.group_names.each do |n| %>
+            <li><a href="javascript: void(0)"><%= n %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :code, 'Code', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">
+    <%= f.text_field :code, :class => 'form-control input-sm' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+  $("[data-gn=<%= f.hash %>]").text_input_options("input", "a");
+})
+</script>

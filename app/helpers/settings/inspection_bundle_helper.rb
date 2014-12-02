@@ -1,0 +1,2 @@
+module Settings::InspectionBundleHelper
+end

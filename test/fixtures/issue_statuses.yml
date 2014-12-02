@@ -1,0 +1,36 @@
+status_begining:
+  id: 1
+  name: "Padding"
+  order: 0
+  mode: "processing"
+
+status_confirming:
+  id: 2
+  name: "Confirming"
+  order: 1
+  mode: "processing"
+
+status_examing:
+  id: 3
+  name: "Processing"
+  order: 2
+  mode: "processing"
+
+status_reviewing:
+  id: 4
+  name: "Reviewing"
+  order: 3
+  mode: "processing"
+
+status_completed:
+  id: 5
+  name: "Completed"
+  order: 4
+  mode: "finished"
+
+status_canceled:
+  id: 6
+  name: "Canceled"
+  order: 5
+  mode: "finished"
+  

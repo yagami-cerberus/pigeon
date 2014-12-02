@@ -1,0 +1,23 @@
+<h3><%= t :'issues' %></h3>
+<hr />
+
+<table class="table table-">
+  <thead>
+    <tr>
+      <td>#</td><td>Name</td><td>Sex</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @issues.each do |i| %>
+    <tr>
+      <td><%= i.id %></td>
+      <td><%= i.profile.firstname%> <%= i.profile.surname%></td>
+      <td><%= i.profile.sex %></td>
+      <td>
+        <a href="<%= issue_path(i) %>">Details</a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

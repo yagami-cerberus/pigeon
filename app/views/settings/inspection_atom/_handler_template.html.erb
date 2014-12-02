@@ -1,0 +1,5 @@
+<%= fields_for(:inspection_atom, {}) do |parent_f| %>
+  <%= parent_f.fields_for(:type_handler, {}) do |f| %>
+    <%= inspection_type_editor f, @type_handler %>
+  <% end %>
+<% end %>

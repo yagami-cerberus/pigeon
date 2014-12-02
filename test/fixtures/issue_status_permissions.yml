@@ -1,0 +1,38 @@
+# Permission Flags:
+# 1: view issue
+# 2: create issue
+# 4: edit issue
+# 8: fill up values
+# 16: submit values
+# 32: delete values
+
+begining_st_clerk_g:
+    issue_status: 1
+    group: clerk_group
+    permission_flags: 7
+    issue_status_ids: []
+
+begining_st_clerk_g:
+    issue_status: 1
+    group: clerk_group
+    permission_flags: 7
+    issue_status_ids: []
+
+begining_st_clerk_g:
+    issue_status: 1
+    group: clerk_group
+    permission_flags: 7
+    issue_status_ids: []
+
+begining_st_clerk_g:
+    issue_status: 1
+    group: clerk_group
+    permission_flags: 7
+    issue_status_ids: []
+
+begining_st_clerk_g:
+    issue_status: 1
+    group: clerk_group
+    permission_flags: 7
+    issue_status_ids: []
+

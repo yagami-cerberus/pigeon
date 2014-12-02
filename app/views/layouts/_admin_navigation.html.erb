@@ -1,0 +1,18 @@
+<% if claims.has_role 'admin' %>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-fw fa-cog fa-lg"></i> <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu sb-admin-patch">
+    <% if claims.has_role 'admin.manage_products' %>
+      <li><a href="<%= settings_inspection_item_index_path %>"><i class="fa fa-fw fa-cubes"></i> <%= t(:'nav.system.inspection_items') %></a></li>
+      <li><a href="<%= settings_inspection_bundle_index_path %>"><i class="fa fa-fw fa-tags"></i> <%= t(:'nav.system.inspection_bundles') %></a></li>
+    <% end %>
+    <% if claims.has_role 'admin.manage_users' %>
+      <li class="divider"></a>
+      <li><a href="<%= settings_user_index_path %>"><i class="fa fa-fw fa-user"></i> <%= t(:'nav.system.users')%></a></li>
+      <li><a href="<%= settings_group_index_path %>"><i class="fa fa-fw fa-users"></i> <%= t(:'nav.system.groups')%></a></li>
+    <% end %>
+  </ul>
+</li>
+<% end %>

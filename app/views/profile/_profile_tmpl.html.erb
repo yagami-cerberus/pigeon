@@ -1,0 +1,37 @@
+<% if profile.nil? || profile.new_record? %>
+  <%= fields_for form_prefix do |f| %>
+    <%= f.fields_for :profile_attributes, profile do |pf|%>
+      <div class="form-group">
+        <%= pf.label :identify, 'Identify', class: 'col-lg-1 col-sm-2 control-label' %>
+        <div class="col-lg-2 col-sm-3">
+          <%= pf.text_field :identify, :class => 'form-control input-sm' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= pf.label :firstname, 'Firstname', class: 'col-lg-1 col-sm-2 control-label' %>
+        <div class="col-lg-3 col-sm-4">
+          <%= pf.text_field :firstname, :class => 'form-control input-sm' %>
+        </div>
+        <%= pf.label :surname, 'Surname', class: 'col-lg-1 col-sm-2 control-label' %>
+        <div class="col-lg-3 col-sm-4">
+          <%= pf.text_field :surname, :class => 'form-control input-sm' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= pf.label :birthday, 'Birthday', class: 'col-lg-1 col-sm-2 control-label' %>
+        <div class="col-lg-2 col-md-3 col-sm-4">
+          <%= pf.date_field :birthday, :class => 'form-control input-sm' %>
+        </div>
+        <%= pf.label :sex, 'Sex', class: 'col-lg-2 col-sm-2 control-label' %>
+        <div class="col-lg-2 col-sm-3">
+          <%= pf.select :sex, [['', ''], ['Male', 'male'], ['Female', 'female']], {}, :class => 'form-control input-sm' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= fields_for form_prefix do |f| %>
+    <%= f.hidden_field :profile_id, :value => profile.id %>
+  <% end %>
+  <%= render 'profile/profile', :profile => profile %>
+<% end %>

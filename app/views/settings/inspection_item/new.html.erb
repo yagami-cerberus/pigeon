@@ -1,0 +1,14 @@
+<h1><%= t :'inspection.create'%></h1>
+<hr />
+
+<div class='container'>
+  <%= form_for [:settings, @item], url: {action: 'create'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <%= hidden_field_tag :refer, params[:refer] %>
+    <%= render 'settings/inspection_item/editor', :f => f %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <button type='submit' class='btn btn-sm btn-success'>Create</button>
+      </div>
+    </div>
+  <% end %>
+</div>

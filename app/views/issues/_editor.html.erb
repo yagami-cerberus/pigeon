@@ -1,0 +1,59 @@
+<h4><i class="fa fa-user"></i> Profile</h4>
+<%= render 'issues/profile_selector', :f => f %>
+<hr />
+
+<h4><i class="fa fa-tags"></i> Inspection</h4>
+<div class="form-group">
+  <input type="hidden" id="bundle_searcher" />
+</div>
+<div id="bundles">
+  <% f.object.issue_bundles.each do |ib| %>
+    <%= render 'issues/bundle_tmpl', :form_prefix => "#{f.instance_variable_get(:'@object_name')}[issue_bundles_attributes][#{ib.inspection_bundle_id}]", :object => ib %>
+  <% end %>
+</div>
+<hr />
+
+<h4><i class="fa fa-flask"></i> Samples</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>NO</th><th>Type</th><th>Quantity</th>
+      <th>
+        <button type="button" class="btn btn-sm btn-success" onclick='$("#samples").sample_editor("add");'>Add Sample</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody id="samples">
+    <% f.object.samples.each_with_index do |s, i| %>
+      <%= render 'issues/sample_tmpl', :form_prefix => "#{f.instance_variable_get(:'@object_name')}[samples_attributes][#{i}]", :object => s %>
+    <% end %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+$(function() {
+  var indexer = 0;
+  
+  $("#bundle_searcher").bundle_finder({
+    search_url: '<%= search_bundle_issues_path %>',
+    selected: function(bundle_id) {
+      $("#bundles").bundle_editor("add", bundle_id);
+    }
+  });
+  
+  $("#bundles").bundle_editor({
+    tmpl_url: '<%= bundle_tmpl_issues_path %>',
+    form_prefix: '<%= f.instance_variable_get(:'@object_name')%>[issue_bundles_attributes]'
+  });
+  
+  $("#samples").sample_editor({
+    tmpl_url: '<%= sample_tmpl_issues_path %>',
+    form_prefix: function() {
+      while(true) {
+        var prefix = '<%= f.instance_variable_get(:'@object_name')%>[samples_attributes][' + (indexer++).toString() + ']';
+        if($("[data-index=\"" + prefix + "\"]").length === 0) return prefix;
+      }
+    }
+  });
+});
+</script>

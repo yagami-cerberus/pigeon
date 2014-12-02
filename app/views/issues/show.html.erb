@@ -1,0 +1,39 @@
+<h3>Issue#<%= @issue.id%></h3>
+<hr />
+
+<div class="container-fluid text-right">
+  <%= link_to 'Edit', edit_issue_path(@issue), :class => 'btn btn-sm btn-primary'%>
+</div>
+
+<h4><i class="fa fa-info"></i> Info</h4>
+<div class="container-fluid form-horizontal">
+  <%= @issue.issue_status.name %>
+</div>
+<hr />
+
+<h4><i class="fa fa-user"></i> Profile</h4>
+<div class="container-fluid form-horizontal">
+  <%= render 'profile/profile', :profile => @issue.profile %>
+</div>
+<hr />
+
+<h4><i class="fa fa-tags"></i> Inspection</h4>
+<div class="container-fluid form-horizontal">
+  <% @issue.issue_bundles.each do |b| %>
+  <%= render 'issues/issue_bundle', :b => b %>
+  <% end %>
+</div>
+
+<h4><i class="fa fa-flask"></i> Samples</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>NO</th><th>Type</th><th>Quantity</th><th></th>
+    </tr>
+  </thead>
+  <tbody id="samples">
+    <% @issue.samples.each do |s| %>
+    <%= render 'issues/sample', :sample => s %>
+    <% end %>
+  </tbody>
+</table>

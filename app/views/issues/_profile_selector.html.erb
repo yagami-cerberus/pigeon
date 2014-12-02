@@ -1,0 +1,17 @@
+<div id="profile-editor">
+  <div class="form-group profile-selector">
+    <input type="hidden" data-role="profile-searcher" />
+    <button class="btn btn-sm btn-info" type="button" data-role="new-profile-btn">New Profile</button>
+      </div>
+  <div data-role="contents"><%= render 'profile/profile_tmpl', :profile => f.object.profile, :form_prefix => 'issue' %></div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+  $("#profile-editor").profile_editor({
+    search_url: '/profiles/search',
+    tmpl_url : '/profiles/selector_tmpl',
+    form_prefix: '<%= f.instance_variable_get(:'@object_name')%>'
+  });
+});
+</script>

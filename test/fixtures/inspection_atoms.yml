@@ -1,0 +1,113 @@
+gene_weight_rs5443:
+  inspection_item_id: 101
+  title: "GNB3-rs5443"
+  code: "rs5443"
+  unit: ""
+  order_index: 0
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"CC,CT,TT\"}"
+  program_code: "rs5443"
+  
+gene_weight_rs1042714:
+  inspection_item_id: 101
+  title: "ADRB2-rs1042714"
+  code: "rs1042714"
+  unit: ""
+  order_index: 1
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"CC,CG,GG\"}"
+  program_code: "rs1042714"
+  
+gene_weight_rs1799750:
+  inspection_item_id: 102
+  title: "MMP1-rs1799750"
+  code: "rs1799750"
+  unit: ""
+  order_index: 0
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"GG,G-,--\"}"
+  program_code: "rs1799750"
+
+gene_weight_rs1051740:
+  inspection_item_id: 102
+  title: "EPHX1-rs1051740"
+  code: "rs1051740"
+  unit: ""
+  order_index: 1
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"CC,CT,TT\"}"
+  program_code: "rs1051740"
+
+gene_weight_rs1137100:
+  inspection_item_id: 102
+  title: "LEPR-rs1137100"
+  code: "rs1137100"
+  unit: ""
+  order_index: 2
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"AA,AG,GG\"}"
+  program_code: "rs1137100"
+
+gene_weight_rs25487:
+  inspection_item_id: 102
+  title: "XRCC1-rs25487"
+  code: "rs25487"
+  unit: ""
+  order_index: 3
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"CC,CT,TT\"}"
+  program_code: "rs25487"
+
+gene_weight_rs4880:
+  inspection_item_id: 102
+  title: "SOD2-rs4880"
+  code: "rs4880"
+  unit: ""
+  order_index: 4
+  data_type: "enum"
+  data_descriptor: "{\"options\":\"AA,AG,GG\"}"
+  program_code: "rs4880"
+
+bio_anti_hbe_0:
+  inspection_item_id: 201
+  title: "Anti-HBe"
+  code: "BIO001"
+  unit: ""
+  order_index: 0
+  data_type: "numeric"
+  data_descriptor: "{\"limit_lowerbound\":\"\",\"limit_lowerbound_op\":\"\",\"limit_upbound\":\"\",\"limit_upbound_op\":\"\",\"lowerbound\":\"\",\"lowerbound_op\":\"\",\"upbound\":\"10\",\"upbound_op\":\"l\"}"
+  program_code: "BIO001"
+
+bio_hbeag_0:
+  inspection_item_id: 202
+  title: "HBeAg"
+  code: "BIO002"
+  unit: ""
+  order_index: 0
+  data_type: "numeric"
+  data_descriptor: "{\"limit_lowerbound\":\"\",\"limit_lowerbound_op\":\"\",\"limit_upbound\":\"\",\"limit_upbound_op\":\"\",\"lowerbound\":\"\",\"lowerbound_op\":\"\",\"upbound\":\"1.3\",\"upbound_op\":\"l\"}"
+  program_code: "BIO002"
+
+bio_anti_hbs_0:
+  inspection_item_id: 203
+  title: "Anti-HBs"
+  code: "BIO003"
+  unit: ""
+  order_index: 0
+  data_type: "numeric"
+  data_descriptor: "{\"limit_lowerbound\":\"\",\"limit_lowerbound_op\":\"\",\"limit_upbound\":\"\",\"limit_upbound_op\":\"\",\"lowerbound\":\"\",\"lowerbound_op\":\"\",\"upbound\":\"8\",\"upbound_op\":\"l\"}"
+  program_code: "BIO003"
+
+<%["Mite, Der. pteronyssinus", "Mite, Der. farinae", "Mite, Blomia tropicalis", "Cat Dander", "Dog Dander", "Egg White, Chicken", "Milk, Bovine", "Codfish", "Wheat", "Peanut", "Soybean", "Almond", "Crab", "Shrimp", "Bermuda Grass", "Timothy Grass", "Cockroach, German", "Aspergillus fumigatus", "Candida albicans", "Ragweed, Short"].each_with_index do |item, index|%>
+
+bio_allergy_<%=index%>:
+  inspection_item_id: 204
+  title: "<%= item%>"
+  code: "ALLERGY<%=index%>"
+  unit: ""
+  order_index: <%=index%>
+  data_type: "numeric"
+  data_descriptor: "{\"limit_lowerbound\":\"\",\"limit_lowerbound_op\":\"\",\"limit_upbound\":\"\",\"limit_upbound_op\":\"\",\"lowerbound\":\"\",\"lowerbound_op\":\"\",\"upbound\":\"1\",\"upbound_op\":\"l\"}"
+  program_code: "ALLERGY<%=index%>"
+
+<% end %>

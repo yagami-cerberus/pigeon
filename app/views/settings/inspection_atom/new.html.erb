@@ -1,0 +1,13 @@
+<h1><%= t :'inspection.create_item'%></h1>
+<hr />
+
+<div class='container'>
+  <%= form_for @atom, url: {action: 'create'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <%= render 'settings/inspection_atom/editor', :f => f, :type_handler => @type_handler %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <button type='submit' class='btn btn-sm btn-success'>Create</button>
+      </div>
+    </div>
+  <% end %>
+</div>

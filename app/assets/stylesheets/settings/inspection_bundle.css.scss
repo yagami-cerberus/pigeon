@@ -1,0 +1,18 @@
+
+.bundle-contents {
+    .inspect-label {
+        white-space: nowrap;
+    }
+    
+    span.inspect-item {
+        white-space: nowrap;
+        
+        &:after {
+            content: " / ";
+        }
+        
+        &:last-child::after {
+            content: "";
+        }
+    }
+}

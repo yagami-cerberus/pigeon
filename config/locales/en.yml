@@ -1,0 +1,56 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  shared:
+    search: 'Search'
+  nav:
+    system:
+      management: 'System Management'
+      users: 'Users'
+      groups: 'Groups'
+      inspection_catalogs: 'Inspection Catalogs'
+      inspection_bundles: 'Inspection Bundles'
+    account:
+      catalog: 'My Account'
+      profile: 'My Profile'
+      change_passwd: 'Change Password'
+  user:
+    create_user: 'Create User'
+    edit_user: 'Edit User'
+    reset_password: 'Reset Password'
+  
+  security:
+    login: 'Login'
+    login_failed: 'Bad username or password'
+    bad_activate_code: 'Bad activate code'
+    account_disabled: 'Account is disabled'
+    bad_password: 'Bad password'
+    weak_password: 'Weak password'
+    password_not_match: 'Passwoed and confirm password not match'
+    logout: 'Logout'
+  permission:
+    account_manager: 'Account Manager'
+    announce_manager: 'Announce Manager'
+    inspection_items_manager: 'Inspection Items Manager'
+    issue_creator: 'Issue Creator'
+    issue_reviewer: 'Issue Reviewer'
+    issue_manager: 'Issue Manager'

@@ -1,0 +1,21 @@
+<h3><%= t :'settings.issue_status'%></h3>
+<hr />
+
+<table class="table">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Order</th>
+    <th>Mode</th>
+  </tr>
+</thead>
+<tbody>
+<% @is.each do |s| %>
+  <tr>
+    <td><%= s.name %></td>
+    <td><%= s.order %></td>
+    <td><%= s.mode %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

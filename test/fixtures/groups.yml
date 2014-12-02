@@ -1,0 +1,13 @@
+clerk_group:
+  name: "Clerks"
+  system_flags: 0
+
+lab_group:
+  name: "Lab Members"
+  system_flags: 0
+
+manager_group:
+  name: "Managers"
+
+admin_group:
+  name: "Administrators"

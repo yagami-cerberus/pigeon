@@ -1,0 +1,10 @@
+<h1><%= t :'user.edit_group'%> <%= @group.name %></h1>
+<hr />
+
+<%= form_for [:settings, @group], html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <%= hidden_field_tag :refer, params[:refer] %>
+  <%= render 'settings/group/editor', :f => f %>
+  <button type='submit' class='btn btn-sm btn-success'>
+    Save
+  </button>
+<% end %>

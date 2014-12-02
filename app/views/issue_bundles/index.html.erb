@@ -1,0 +1,36 @@
+<h3><%= t :'inspections' %></h3>
+<hr />
+
+<%
+colspan = @status.length + 1
+%>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <% @status.each do |s| %>
+        <th class="text-center" style="width: 100px"><%= s.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bundles.each do |group_name, bundles| %>
+      <tr>
+        <th colspan="<%=colspan%>"><i class="fa fa-cubes"></i> <%= group_name%></th>
+      </tr>
+      <% bundles.each do |b| %>
+        <% statistic = @statistics[b.id] || {} %>
+        <tr>
+          <td><%= b.title %></td>
+          <% @status.each do |s| %>
+            <td class="text-center">
+              <a href="<%= search_issue_bundles_path(:"filter[b]" => b.id, :"filter[s]" => s.id)%>" class="block">
+                <%= statistic[s.id] || 0 %>
+              </a>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,7 @@
+<li class="<%= actived ? "active" : "" %> <%= enabled ? "" : "disabled" %>">
+<%- if enabled && !actived -%>
+  <a data-paging="item" data-target="filters" href="?<%= {:filter => params[:filter] || {}, :p => page}.to_query %>"><%= symbol.nil? ? (page + 1).to_s : symbol %></a>
+<%- else -%>
+  <span><%= symbol.nil? ? (page + 1).to_s : symbol %></span>
+<%- end -%>
+</li>

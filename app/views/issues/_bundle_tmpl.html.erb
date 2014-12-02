@@ -1,0 +1,34 @@
+<%= fields_for form_prefix, object do |f| %>
+<div class="container-fluid bundle-contents hover" data-bundle-id="<%=f.object.inspection_bundle.id%>" data-new="<%= !f.object.id.present? %>">
+  <div class="operation">
+    <button type="button" data-role="delete" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+    <% if f.object.id.present? %>
+      <button type="button" data-role="restore" class="btn btn-xs btn-success" style="display: none"><i class="fa fa-share"></i> Restore</button>
+    <% end %>
+  </div>
+  
+  <h5>
+    <i class="fa fa-tag"></i> <%= "[#{f.object.code}] #{f.object.title}"%>
+    <% unless f.object.id.present? %> <label class="label label-success">New</label> <% end %>
+  </h5>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :inspection_bundle_id %>
+  <%=f.hidden_field :_destroy, :'data-role' => 'destroy-flag' %>
+  
+  <% f.object.inspection_bundle.inspection_items.each do |c| %>
+  <div class="row">
+    <div class="col-sm-3 col-lg-2 inspect-label" data-sample-type="<%=c.sample_type%>">
+      <label>
+        <%= f.check_box :inspection_item_ids, { :multiple => true }, c.id, nil %>
+        <%= c.title %>
+      </label>
+    </div>
+    <div class="col-sm-9 col-lg-10">
+      <% c.inspection_atoms.each do |i| %>
+        <span class="inspect-item"><%= i.title %></span>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>

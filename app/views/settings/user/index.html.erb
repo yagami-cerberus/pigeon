@@ -1,0 +1,60 @@
+<h1><%= t :'nav.system.user'%></h1>
+<hr />
+<div class="record-filter">
+  <div class="record-filter-toolbar">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-wrench"></span>
+        Tools <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-shift" role="menu">
+        <li><a href="<%= new_settings_user_path %>">Create Account</a></li>
+        <li><a href="#">Download Excel List</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
+  <%= render 'layouts/filters/user' %>
+</div>
+<div class="record-table">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <td>
+          <input type="checkbox" id="user_toggle" />
+          Username
+        </td>
+          <td>Name</td><td>Status</td><td></td></tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+      <tr>
+        <td>
+          <input type="checkbox" id="user_<%= u.id %>" data-model="user" />
+          <label for="user_<%= u.id %>"><%= u.username %></label>
+        </td><td><%= u.name %></td><td></td>
+        <td>
+          <%= link_to 'Edit', edit_settings_user_path(u, :refer => request.fullpath) %> |
+          <%= link_to 'Reset Password', edit_password_settings_user_path(u, :refer => request.fullpath) %> |
+          <% if u.disabled %>
+            <%= link_to 'Enable', set_disabled_settings_user_path(u, :flag => 'f' ), :method => :post %> |
+          <% else %>
+            <%= link_to 'Disable', set_disabled_settings_user_path(u, :flag => 't' ), :method => :post %> |
+          <% end %>
+          <%= link_to 'Delete', [:settings, u], :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="record-pagination">
+  <%= render 'layouts/pagination/pager', :current_page => @current_page, :page_size => @page_size, :input => '' %>
+</div>
+
+<script type="text/javascript">
+$(function() {
+  $("#user_toggle").checkbox_toggle("input[data-model=user]");
+});
+</script>

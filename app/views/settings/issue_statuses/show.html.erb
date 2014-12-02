@@ -1,0 +1,37 @@
+<h1><%= t :'issue_status'%>: <%= @status.name %></h1>
+<hr />
+
+<div class='container-fluid'>
+  <table class="dashboard table">
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>View issue</th>
+        <th>Create issue</th>
+        <th>Edit issue</th>
+        <th>Fill up values</th>
+        <th>Submit values</th>
+        <th>Delete issue</th>
+        <th>Can change to...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @status.issue_status_permissions.each do |p| %>
+        <tr>
+          <th><%= p.group.name %></th>
+          <td><%= checked(p.view_issue) %></td>
+          <td><%= checked(p.create_issue) %></td>
+          <td><%= checked(p.edit_issue) %></td>
+          <td><%= checked(p.fill_up_values) %></td>
+          <td><%= checked(p.submit_values) %></td>
+          <td><%= checked(p.delete_issue) %></td>
+          <td>
+            <% p.issue_status_ids.each do |id| %>
+              <%= issue_status id%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

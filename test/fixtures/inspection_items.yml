@@ -1,0 +1,41 @@
+gene_weight:
+  id: 101
+  title: "Weight Loss"
+  group_name: "Gene"
+  code: "G001"
+  sample_type: "gene"
+
+gene_antioxidant:
+  id: 102
+  title: "Antioxidant"
+  group_name: "Gene"
+  code: "G002"
+  sample_type: "gene"
+  
+bio_anti_hbe:
+  id: 201
+  title: "Anti-HBe"
+  group_name: "Biochemical"
+  code: "B001"
+  sample_type: "blood"
+
+bio_hbeag:
+  id: 202
+  title: "HBeAg"
+  group_name: "Biochemical"
+  code: "B002"
+  sample_type: "blood"
+
+bio_anti_hbs:
+  id: 203
+  title: "Anti-HBs"
+  group_name: "Biochemical"
+  code: "B003"
+  sample_type: "blood"
+
+bio_allergy:
+  id: 204
+  title: "Allergy"
+  group_name: "Biochemical"
+  code: "B004"
+  sample_type: "blood"

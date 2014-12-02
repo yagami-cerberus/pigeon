@@ -1,0 +1,38 @@
+<h3><%= t(:'nav.system.inspection_bundles') %></h3>
+<hr />
+
+<div class="record-filter">
+  <div class="record-filter-toolbar">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-wrench"></span>
+        Tools <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-shift" role="menu">
+        <li><a href="<%= new_settings_inspection_bundle_path(:refer => request.fullpath) %>">Create</a></li>
+      </ul>
+    </div>
+  </div>
+  <%= render 'layouts/filters/issue_bundles' %>
+</div>
+<div class="record-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th><th>Group</th><th>Code</th><th>Items</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% @bundles.each do |c| %>
+      <tr>
+        <td><%= c.title %></td>
+        <td></td>
+        <td></td>
+        <td><%= c.inspection_items.pluck(:title).join('/') %></td>
+        <td>
+          <%= link_to 'Details', c %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
