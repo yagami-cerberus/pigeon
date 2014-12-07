@@ -24,6 +24,11 @@ module BitFlags
         @_#{column}_items = nil
         write_attribute(:#{column}, value)
       end
+      
+      def #{column}
+        value = read_attribute(:#{column})
+        value == nil ? 0 : value
+      end
       RUBY_EVAL
       
       map.each do |offset, label|

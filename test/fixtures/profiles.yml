@@ -1,0 +1,6 @@
+unittest_profile:
+    identify: "00000001"
+    firstname: "Jean-Luc"
+    surname: "Picard"
+    sex_flag: "m"
+    birthday: "1911-01-02"

@@ -1,20 +1,26 @@
 <h3><%= t :'settings.issue_status'%></h3>
 <hr />
-
+<div class="navbar">
+  <div class="nav navbar-nav navbar-right">
+    <a class="btn btn-sm btn-success" href="<%=new_settings_issue_status_path%>">New</a>
+  </div>
+</div>
 <table class="table">
 <thead>
   <tr>
     <th>Name</th>
     <th>Order</th>
     <th>Mode</th>
+    <th></th>
   </tr>
 </thead>
 <tbody>
 <% @is.each do |s| %>
   <tr>
-    <td><%= s.name %></td>
+    <td><%= link_to s.name, [:settings, s] %></td>
     <td><%= s.order %></td>
     <td><%= s.mode %></td>
+    <td><%= link_to "Edit", edit_settings_issue_status_path(s) %></td>
   </tr>
 <% end %>
 </tbody>

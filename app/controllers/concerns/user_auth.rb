@@ -43,8 +43,7 @@ module UserAuth
     user.process_login
     
     if user.instance_of?(User)
-      session[:__claims] = {id: user.id, identify: user.username,
-        name: user.name, email: user.email, roles: user.grouped_permissions}
+      session[:__claims] = RegularClaims.to_claim_session user
     else
       raise "Unknow login instance"
     end
@@ -64,7 +63,7 @@ module UserAuth
     # Validate Role
     require_role = _acl.has_key?(action) ? _acl[action] : _acl_default
     if require_role
-      return claims.has_role(require_role) if not require_role.nil?
+      return claims.permit?(require_role) if not require_role.nil?
     else
       return true
     end
@@ -74,14 +73,19 @@ module UserAuth
   def create_claims
     if session[:__claims]
       user_data = session[:__claims].symbolize_keys
-      return RegularUser.new(user_data)
+      return RegularClaims.new(user_data)
     else
-      return GuestUser.instance
+      return GuestClaims.instance
     end
   end
 end
 
-class RegularUser
+class RegularClaims
+  def self.to_claim_session user
+    {:id => user.id, :identify => user.username,
+      :name => user.name, :email => user.email, :acl => user.grouped_permissions}
+  end
+  
   def initialize(params = {})
     @params = params
   end
@@ -106,16 +110,37 @@ class RegularUser
     false
   end
   
-  def has_role(role)
-    @params[:roles].include?(role)
+  def permit?(scope, *args)
+    if scope == :system
+      return @params[:acl]["system"].include?(args[0])
+    elsif scope == :issue
+      return issue_status_id_for("issue.view").count > 0
+    elsif scope == :inspection
+      return issue_status_id_for("inspection.view").count > 0
+    elsif scope.is_a?Issue
+      l = @params["acl"]["issues"][scope.issue_status_id.to_s]
+      return l['actions'].include?(args[0]) if l
+    end
+    false
   end
   
+  def can_update_issue_status_to(issue)
+    l = @params["acl"]["issues"][issue.issue_status_id.to_s]
+    return l ? l['to'] : []
+  end
+
+  def issue_status_id_for(action)
+    @params[:acl]["issues"]
+      .select { |id, actions| actions["actions"].include?action }
+      .map { |id, _| id.to_i }
+  end
+
   def model
     User.find(@params[:id])
   end
 end
 
-class GuestUser
+class GuestClaims
   include Singleton
   
   def name
@@ -132,8 +157,16 @@ class GuestUser
     false
   end
   
-  def has_role(role)
+  def permit?(*args)
     false
+  end
+  
+  def can_update_issue_status_to(issue)
+    []
+  end
+  
+  def issue_status_id_for(action)
+    []
   end
   
   def guest?

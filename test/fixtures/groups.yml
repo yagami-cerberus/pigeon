@@ -1,13 +1,28 @@
-clerk_group:
-  name: "Clerks"
+
+typist_group:
+  name: "Typists"
   system_flags: 0
 
-lab_group:
-  name: "Lab Members"
+researcher_group:
+  name: "Researchers"
   system_flags: 0
 
-manager_group:
-  name: "Managers"
+lab_managers:
+  name: "LAB Managers"
+  system_flags: 0
+
+super_lab_managers:
+  name: "Super LAB Managers"
+  system_flags: 0
+
+account_manager_group:
+  name: "Account Managers"
+  system_flags: 1
+
+product_manager_group:
+  name: "Product Managers"
+  system_flags: 2
 
 admin_group:
   name: "Administrators"
+  system_flags: 4294967295

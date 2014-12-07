@@ -1,4 +1,4 @@
-status_begining:
+status_padding:
   id: 1
   name: "Padding"
   order: 0
@@ -10,9 +10,9 @@ status_confirming:
   order: 1
   mode: "processing"
 
-status_examing:
+status_inspecting:
   id: 3
-  name: "Processing"
+  name: "Inspecting"
   order: 2
   mode: "processing"
 

@@ -7,6 +7,21 @@ class Settings::IssueStatusesController < ApplicationController
     @status = IssueStatus.find(params[:id])
   end
   
+  def new
+    @status = IssueStatus.new
+    @status.prepare_group_permissions
+  end
+  
+  def create
+    @status = IssueStatus.new issue_statuses_params
+    
+    if @status.save
+      redirect_to (params[:refer].presence || [:settings, @status])
+    else
+      render :template => 'settings/issue_statuses/new'
+    end
+  end
+  
   def edit
     @status = IssueStatus.find(params[:id])
     @status.prepare_group_permissions
@@ -24,7 +39,7 @@ class Settings::IssueStatusesController < ApplicationController
   
   private
   def issue_statuses_params
-    params.require(:issue_status).permit(:name, :order,
+    params.require(:issue_status).permit(:name, :order, :mode,
       :issue_status_permissions_attributes => [
         :id, 
         :group_id, :view_issue, :create_issue, :edit_issue, :fill_up_values,

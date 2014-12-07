@@ -1,5 +1,5 @@
 class IssueStatus < ActiveRecord::Base
-  default_scope { order :order }
+  validates :mode, inclusion: { in: %w(processing finished) }
   
   scope :processing, -> { where.not :mode => 'finished' }
   scope :finished, -> { where :mode => 'finished' }

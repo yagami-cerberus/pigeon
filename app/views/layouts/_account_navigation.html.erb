@@ -9,10 +9,7 @@
     </a>
     <ul class="dropdown-menu sb-admin-patch">
       <li class="dropdown-header"><%= t 'nav.account.catalog' %></li>
-      <% if claims.superuser? %>
-      <% else %>
       <li><a href="<%= my_profile_path %>"><i class="fa fa-fw fa-user"></i> <%= t 'nav.account.profile' %></a></li>
-      <% end %>
       <li><a href="<%= change_password_path %>"><i class="fa fa-fw fa-key"></i> <%= t 'nav.account.change_passwd' %></a></li>
       <li class="divider"></li>
       <li>

@@ -1,43 +1,61 @@
 sha256_test_user:
-    username: "sha256_test_user"
-    # Note: password = pigeon
-    hashed_password: "SHA256:BfaxPXpd$51b5112a7f832e14b1bbe27b9371459dc22504b8b7ce571b580930484aeaa019"
-    name: "Test SHA256 Password"
-    email: "sha256_test@unittest.pigeon"
-    # Enabled
-    flags: 0
-
-disabled_user:
-    username: "disabled_user"
-    hashed_password: <%= User.sha256_hash("disabled") %>
-    name: "Test Disabled User"
-    email: "disabled@unittest.pigeon"
-    # Disabled
-    flags: 1
+  username: "sha256_test_user"
+  # Note: password = pigeon
+  hashed_password: "SHA256:BfaxPXpd$51b5112a7f832e14b1bbe27b9371459dc22504b8b7ce571b580930484aeaa019"
+  name: "Test SHA256 Password"
+  email: "sha256_test@unittest.pigeon"
+  flags: 1
 
 regular_user:
-    username: "regular_user"
-    hashed_password: <%= User.sha256_hash("moo~") %>
-    name: "Regular User"
-    email: "regular@unittest.pigeon"
-    flags: 0
+  username: "regular_user"
+  hashed_password: <%= User.sha256_hash("moo~") %>
+  name: "Regular User"
+  email: "regular@unittest.pigeon"
+  flags: 1
 
 guest_user:
-    username: "guest_user"
-    hashed_password: <%= User.sha256_hash("dummy") %>
-    name: "Guest"
-    email: "guest@unittest.pigeon"
-    flags: 0
+  username: "guest"
+  hashed_password: <%= User.sha256_hash("dummy") %>
+  name: "Guest"
+  email: "guest@unittest.pigeon"
+  flags: 1
+
+typist_user:
+  username: "typist"
+  hashed_password: <%= User.sha256_hash('unittest_account') %>
+  name: "Typist"
+  email: "typist@unittest.pigeon"
+  flags: 1
+  groups: typist_group
+
+researcher_user:
+  username: "researcher"
+  hashed_password: <%= User.sha256_hash('unittest_account') %>
+  name: "Researcher"
+  email: "researcher@unittest.pigeon"
+  flags: 1
+  groups: researcher_group
+
+manager_user:
+  username: "manager"
+  hashed_password: <%= User.sha256_hash('unittest_account') %>
+  name: "Manager"
+  email: "manager@unittest.pigeon"
+  flags: 1
+  groups: lab_managers
+
+leader_user:
+  username: "leader"
+  hashed_password: <%= User.sha256_hash('unittest_account') %>
+  name: "Leader"
+  email: "leader@unittest.pigeon"
+  flags: 1
+  groups: account_manager_group, product_manager_group, lab_managers, super_lab_managers
 
 admin_user:
-    username: "admin_user"
-    hashed_password: <%= User.sha256_hash("eruru") %>
-    name: "Test Admin"
-    email: "admin@unittest.pigeon"
-    flags: 0
-
-administrative_staff:
-    username: "administrative staff"
-    hashed_password: <%= User.sha256_hash("administrative staff") %>
-    name: "Administrative Staff"
-    
+  username: "admin"
+  hashed_password: <%= User.sha256_hash('unittest_account') %>
+  name: "Test Admin"
+  email: "admin@unittest.pigeon"
+  flags: 1
+  groups: admin_group

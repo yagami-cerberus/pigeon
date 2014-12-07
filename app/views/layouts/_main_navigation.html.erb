@@ -1,12 +1,13 @@
-<% if claims.has_role 'admin' %>
+<% if claims.permit? :issue %>
 <li>
   <a href="<%= issues_path %>"><i class="fa fa-fw fa-dashboard"></i> Issues</a>
 </li>
+<% end %>
+<% if claims.permit? :inspection %>
 <li>
   <a href="<%= issue_bundles_path %>"><i class="fa fa-fw fa-tags"></i> Inspection</a>
 </li>
 <li>
   <a href="<%#= sample_index_path %>"><i class="fa fa-fw fa-flask"></i> Samples</a>
 </li>
-
 <% end %>

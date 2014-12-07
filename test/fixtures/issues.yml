@@ -1,0 +1,11 @@
+
+padding_issue:
+  profile: unittest_profile
+  created_by: typist_user
+  issue_status_id: 1
+
+confirming_issue:
+  profile: unittest_profile
+  created_by: typist_user
+  issue_status_id: 2
+

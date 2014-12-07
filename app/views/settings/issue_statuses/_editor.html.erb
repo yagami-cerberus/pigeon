@@ -10,6 +10,12 @@
     <%= f.text_field :order, :class => 'form-control input-sm' %>
   </div>
 </div>
+<div class="form-group">
+  <%= f.label :mode, 'Mode', class: 'col-sm-2 control-label' %>
+  <div class="col-sm-4">  
+    <%= f.select :mode, [['Processing', 'processing'], ['Finished', 'finished']], :class => 'form-control input-sm' %>
+  </div>
+</div>
 <hr />
 <div class="form-group">
   <div class="col-xs-2 control-label">Group</div>

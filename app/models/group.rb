@@ -4,18 +4,18 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users, :join_table => :user_groups
   has_many :issue_status_permissions
   
-  default_scope { order(:name) }
-  
   validates :name, presence: true
   
   bit_flags :system_flags, {
     0 => :manage_users,
-    1 => :manage_products
+    1 => :manage_products,
+    2 => :manage_working_flow
   }
   
   PERMISSIONS = {
     :manage_users => 'admin.manage_users',
-    :manage_products => 'admin.manage_products'
+    :manage_products => 'admin.manage_products',
+    :manage_working_flow => 'admin.manage_working_flow'
   }
   
   def permissions
@@ -28,6 +28,6 @@ class Group < ActiveRecord::Base
         end
       end
     end
-    roles
+    roles.to_a
   end
 end
