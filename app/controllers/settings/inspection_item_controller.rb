@@ -1,7 +1,9 @@
 require 'filters/inspection_catalog_filter'
 
 class Settings::InspectionItemController < ApplicationController
-  default_access_control 'admin.manage_products'
+  before_action -> {
+    claims.permit! :system, 'admin.manage_products'
+  }
 
   UPDATE_ITEM_FIELDS = [:title, :group_name, :sample_type, :code]
 

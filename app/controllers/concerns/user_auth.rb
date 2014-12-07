@@ -7,28 +7,15 @@ module UserAuth
     helper_method :claims, :login?
     
     class_attribute :_acl_allow_guest
-    class_attribute :_acl_default
-    class_attribute :_acl
-    
     self._acl_allow_guest = self._acl_allow_guest.nil? ? Set.new : self._acl_allow_guest.dup
-    self._acl = self._acl.nil? ? {} : self._acl.dup
   end
-  
+
   module ClassMethods
     def allow_guest(*actions)
       actions.each {|a| self._acl_allow_guest.add a }
     end
-  
-    def default_access_control(role)
-      self._acl_default = role
-    end
-  
-    def access_control(action, role)
-      action = action.to_sym
-      self._acl[action] = role
-    end
   end
-  
+
   protected
   def login?
     not claims.guest?
@@ -55,18 +42,6 @@ module UserAuth
   
   def allow_guest?
     return _acl_allow_guest.include?(action_name.to_sym)
-  end
-  
-  def accessable?
-    action = action_name.to_sym
-    
-    # Validate Role
-    require_role = _acl.has_key?(action) ? _acl[action] : _acl_default
-    if require_role
-      return claims.permit?(require_role) if not require_role.nil?
-    else
-      return true
-    end
   end
   
   private
@@ -109,19 +84,35 @@ class RegularClaims
   def guest?
     false
   end
-  
+
   def permit?(scope, *args)
+    permit!(scope, *args)
+  rescue AccessDenyError
+    false
+  end
+
+  def permit!(scope, *args)
     if scope == :system
-      return @params[:acl]["system"].include?(args[0])
+      unless @params[:acl]["system"].include?(args[0])
+        raise AccessDenyError.new "Denied: :settings, #{args[0].inspect}"
+      end
     elsif scope == :issue
-      return issue_status_id_for("issue.view").count > 0
+      if issue_status_id_for("issue.view").count == 0
+        raise AccessDenyError.new "Denied: :issue"
+      end
     elsif scope == :inspection
-      return issue_status_id_for("inspection.view").count > 0
+      if issue_status_id_for("inspection.view").count == 0
+        raise AccessDenyError.new "Denied: :issue"
+      end
     elsif scope.is_a?Issue
       l = @params[:acl]["issues"][scope.issue_status_id.to_s]
-      return l['actions'].include?(args[0]) if l
+      unless l && l['actions'].include?(args[0])
+        raise AccessDenyError.new "Denied: issue\##{scope.id}, #{args[0]}"
+      end
+    else
+      raise AccessDenyError.new "Unknow scope: #{scope.inspect}"
     end
-    false
+    true
   end
   
   def can_update_issue_status_to(issue)
@@ -161,6 +152,10 @@ class GuestClaims
     false
   end
   
+  def permit!(*args)
+    raise AccessDenyError.new "I'm a guest"
+  end
+
   def can_update_issue_status_to(issue)
     []
   end
@@ -175,4 +170,7 @@ class GuestClaims
   
   def model
   end
+end
+
+class AccessDenyError < RuntimeError
 end

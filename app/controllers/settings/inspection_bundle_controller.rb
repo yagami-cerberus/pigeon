@@ -1,7 +1,9 @@
 require 'filters/inspection_bundle_filter'
 
 class Settings::InspectionBundleController < ApplicationController
-  default_access_control 'admin.manage_products'
+  before_action -> {
+    claims.permit! :system, 'admin.manage_products'
+  }
   
   def index
     @filter = Pigeon::Filters::InspectionBundleFilter.new params[:filter]

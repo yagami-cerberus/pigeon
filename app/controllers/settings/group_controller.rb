@@ -1,6 +1,8 @@
 class Settings::GroupController < ApplicationController
-  # default_access_control 'admin.manage_users'
-  
+  before_action -> {
+    claims.permit! :system, 'admin.manage_users'
+  }
+
   def index
     @new_group = Group.new
     @groups = Group.all

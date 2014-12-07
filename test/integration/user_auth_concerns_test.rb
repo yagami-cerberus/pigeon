@@ -10,12 +10,14 @@ class UserAuthConcernsTest < ActionDispatch::IntegrationTest
   test "permit system actions" do
     c = create_claims User.find_by_login('admin')
     ['admin', 'admin.manage_users'].each do |action|
-        assert c.permit?(:system, action), "User 'admin' should permit action: #{action}"
+        assert c.permit!(:system, action)
     end
 
     c = create_claims User.find_by_login('typist')
     ['admin', 'admin.manage_users'].each do |action|
-        assert_not c.permit?(:system, action), "User 'typist' should not permit action: #{action}"
+        assert_raises AccessDenyError do
+          c.permit!(:system, action)
+        end
     end
   end
 

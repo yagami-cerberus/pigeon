@@ -1,6 +1,8 @@
 class Settings::InspectionAtomController < ApplicationController
-  default_access_control 'admin.manage_products'
-  
+  before_action -> {
+    claims.permit! :system, 'admin.manage_products'
+  }
+
   def new
     @atom = InspectionAtom.new
     @type_handler = @atom.type_handler

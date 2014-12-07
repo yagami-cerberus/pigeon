@@ -1,1 +1,5 @@
 <h3>Access Deny</h3>
+<hr />
+<% if @exception %>
+  <div>Debug: <%=@exception.inspect %></div>
+<% end %>

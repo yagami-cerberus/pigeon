@@ -1,4 +1,8 @@
 class Settings::IssueStatusesController < ApplicationController
+  before_action -> {
+    claims.permit! :system, 'admin.manage_working_flow'
+  }
+
   def index
     @is = IssueStatus.all
   end
@@ -11,17 +15,17 @@ class Settings::IssueStatusesController < ApplicationController
     @status = IssueStatus.new
     @status.prepare_group_permissions
   end
-  
+
   def create
     @status = IssueStatus.new issue_statuses_params
-    
+
     if @status.save
       redirect_to (params[:refer].presence || [:settings, @status])
     else
       render :template => 'settings/issue_statuses/new'
     end
   end
-  
+
   def edit
     @status = IssueStatus.find(params[:id])
     @status.prepare_group_permissions

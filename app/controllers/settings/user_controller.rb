@@ -1,8 +1,10 @@
 require 'filters/user_filter'
 
 class Settings::UserController < ApplicationController
-  # default_access_control 'admin.manage_users'
-  
+  before_action -> {
+    claims.permit! :system, 'admin.manage_users'
+  }
+
   PASSWORD_FIELDS = [:password, :password_confirmation]
   UPDATE_USER_FIELDS = [:name, :email, {:group_ids => []}]
   CREATE_USER_FIELDS = [:username] + PASSWORD_FIELDS + UPDATE_USER_FIELDS

@@ -16,7 +16,7 @@ class Issue < ActiveRecord::Base
 
   belongs_to :created_by, :class_name => 'User'
   
-  # scope :viewable, -> (claim) { where :id => claim }
+  scope :viewable, -> (claims) { where(:id => claims.issue_status_id_for('issue.view')) }
   scope :processing, -> { where.not :issue_statuses => {:mode => 'finished'} }
   scope :finished, -> { where :issue_statuses => {:mode => 'finished'} }
 end
