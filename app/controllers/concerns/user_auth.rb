@@ -118,14 +118,14 @@ class RegularClaims
     elsif scope == :inspection
       return issue_status_id_for("inspection.view").count > 0
     elsif scope.is_a?Issue
-      l = @params["acl"]["issues"][scope.issue_status_id.to_s]
+      l = @params[:acl]["issues"][scope.issue_status_id.to_s]
       return l['actions'].include?(args[0]) if l
     end
     false
   end
   
   def can_update_issue_status_to(issue)
-    l = @params["acl"]["issues"][issue.issue_status_id.to_s]
+    l = @params[:acl]["issues"][issue.issue_status_id.to_s]
     return l ? l['to'] : []
   end
 

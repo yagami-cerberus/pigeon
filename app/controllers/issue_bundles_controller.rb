@@ -2,7 +2,7 @@ require 'filters/issue_bundles_filter'
 
 class IssueBundlesController < ApplicationController
   def index
-    @status = IssueStatus.processing
+    @status = IssueStatus.processing.where(:id => claims.issue_status_id_for('inspection.view'))
     @bundles = Hash[ *InspectionBundle.group_names.map { |gn|
       [gn, InspectionBundle.where(:group_name => gn)]
     }.flatten(1) ]
