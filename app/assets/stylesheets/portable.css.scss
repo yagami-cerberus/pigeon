@@ -8,3 +8,18 @@
     padding: 0 10px;
   }
 }
+
+.toolbar {
+    padding: 0 15px;
+    margin-bottom: 8px;
+
+    .toolbar-left {
+        float: left !important;
+        margin-bottom: 8px;
+    }
+
+    .toolbar-right {
+        float: right !important;
+        margin-bottom: 8px;
+    }
+}

@@ -28,24 +28,6 @@
     display: none;
 }
 
-
-div.record-filter {
-    padding: 0 15px;
-    margin-bottom: 8px;
-}
-
-div.record-filter div.record-filter-toolbar {
-    float: right;
-}
-
-ul.dropdown-menu-shift {
-    right: 0 !important;
-    margin-left: auto !important;
-}
-
-ul.dropdown-menu-shift li {
-}
-
 .form-inline .help-block {
     position: absolute;
 }

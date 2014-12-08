@@ -1,13 +1,14 @@
 <h1><%= t :'nav.system.group'%></h1>
 <hr />
-<div class="record-filter">
+<div class="toolbar">
   <%=form_for @new_group, url: {action: 'create'}, html: {class: 'form-inline', role: 'form'} do |f| %>
     <%= f.text_field :name, :class => 'form-control input-sm', :placeholder => 'New Group Name' %>
     <button class="btn btn-sm btn-success">
-      <i class="fa fa-plus"></i> Create Group
+      <i class="fa fa-plus"></i> Create
     </button>
-      <% end %>
+  <% end %>
 </div>
+
 <div class="record-table">
   <table class="table table-striped table-bordered">
     <thead>

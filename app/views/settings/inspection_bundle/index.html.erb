@@ -1,18 +1,12 @@
 <h3><%= t(:'nav.system.inspection_bundles') %></h3>
 <hr />
-<div class="record-filter">
-  <div class="record-filter-toolbar">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-wrench"></span>
-        Tools <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-shift" role="menu">
-        <li><a href="<%= new_settings_inspection_bundle_path(:refer => request.fullpath) %>">Create</a></li>
-      </ul>
-    </div>
-  </div>
+<div class="toolbar">
+  <div class="toolbar-left">
   <%= render 'layouts/filters/inspection_bundle' %>
+  </div>
+  <div class="toolbar-right">
+    <a class="btn btn-sm btn-success" href="<%= new_settings_inspection_bundle_path(:refer => request.fullpath) %>"><i class="fa fa-plus"></i> New</a>
+  </div>
 </div>
 <div class="record-table">
   <table class="table table-striped table-bordered">
