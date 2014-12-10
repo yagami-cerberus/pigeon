@@ -1,6 +1,7 @@
 class IssueStatus < ActiveRecord::Base
   validates :mode, inclusion: { in: %w(processing finished) }
-  
+
+  scope :permit_with, -> (claims, action) { where(:id => claims.issue_status_id_for('issue.create')) }
   scope :processing, -> { where.not :mode => 'finished' }
   scope :finished, -> { where :mode => 'finished' }
   

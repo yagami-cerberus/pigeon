@@ -1,8 +1,18 @@
 <div id="profile-editor">
-  <div class="form-group profile-selector">
-    <input type="hidden" data-role="profile-searcher" />
-    <button class="btn btn-sm btn-info" type="button" data-role="new-profile-btn">New Profile</button>
-      </div>
+  <div class="form-group">
+    <div class="col-sm-7 col-md-5 col-lg-4">
+      <input type="hidden" data-role="profile-searcher" class="form-control input-sm" />
+    </div>
+    <div class="col-sm-5 col-md-7 col-lg-8 form-control-static">
+       or create new profile below
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-sm btn-warning" type="button" data-role="new-profile-btn">
+      <i class="fa fa-warning"></i>
+      Click here if the profile is wrong
+    </button>
+  </div>
   <div data-role="contents"><%= render 'profile/profile_tmpl', :profile => f.object.profile, :form_prefix => 'issue' %></div>
 </div>
 

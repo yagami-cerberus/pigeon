@@ -2,6 +2,15 @@
 <hr />
 
 <%= form_for @issue, url: {action: 'create'}, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :issue_status_id, 'Status', class: 'col-lg-1 col-sm-2 control-label' %>
+    <div class="col-lg-2 col-sm-3">
+      <%= select_tag 'issue_status_id',
+                      options_for_select(creatable_status_list, params[:issue_status_id]),
+                      :class => 'form-control input-sm'%>
+    </div>
+  </div>
+  <hr />
   <%= render 'issues/editor', :f => f %>
   <hr />
   <div class="form-group text-right">

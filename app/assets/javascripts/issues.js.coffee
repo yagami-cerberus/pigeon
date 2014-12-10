@@ -5,11 +5,19 @@ $.fn.profile_editor = (options) ->
     tmpl_url = options.tmpl_url
     form_prefix = options.form_prefix
 
+    update_ui = () ->
+        if $("[name$='[profile_id]']", $self).length > 0
+            $(".form-group:has([data-role=profile-searcher])", $self).hide()
+            $(".form-group:has([data-role=new-profile-btn])", $self).show()
+        else
+            $(".form-group:has([data-role=profile-searcher])", $self).show()
+            $(".form-group:has([data-role=new-profile-btn])", $self).hide()
+
     $("[data-role=profile-searcher]", $self)
         .select2
-            placeholder: 'Search for a profile...',
+            placeholder: 'Search an exist profile here...',
             minimumInputLength: 1,
-            width: '300px',
+            width: '100%',
             ajax: 
                 url: search_url,
                 dataType: 'json',
@@ -28,6 +36,7 @@ $.fn.profile_editor = (options) ->
                 type: 'get',
                 success: (html) ->
                     $("[data-role=contents]", $self).html(html);
+                    update_ui()
                 error: (xhr) ->
                     if xhr.status == 404
                         alert('Profile not found')
@@ -41,6 +50,8 @@ $.fn.profile_editor = (options) ->
 
     $("[data-role=new-profile-btn]", $self).bind "click", ->
         $("[data-role=profile-searcher]", $self).trigger "update-profile", []
+
+    update_ui()
 
 $.fn.bundle_finder = (options) ->
     $self = $(this)

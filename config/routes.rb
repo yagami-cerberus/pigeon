@@ -20,6 +20,10 @@ Rails.application.routes.draw do
       get 'sample_tmpl'
       get 'search_bundle'
     end
+
+    member do
+      put :update_status
+    end
   end
   
   resources :issue_bundles, :path => :inspections, :only => [:index, :show, :update] do

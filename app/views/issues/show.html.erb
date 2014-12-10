@@ -1,8 +1,19 @@
 <h3>Issue#<%= @issue.id%></h3>
 <hr />
-
 <div class="container-fluid text-right">
   <%= link_to 'Edit', edit_issue_path(@issue), :class => 'btn btn-sm btn-primary'%>
+  <div class="btn-group text-left">
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+      Move <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+      <% @issue.can_update_status_to(claims).each do |s| %>
+        <li>
+          <%= link_to s.name, update_status_issue_path(@issue, :status => s.id), method: :put%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <h4><i class="fa fa-info"></i> Info</h4>

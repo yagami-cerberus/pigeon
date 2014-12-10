@@ -1,11 +1,13 @@
 class IssueBundle < ActiveRecord::Base
   belongs_to :issue
   belongs_to :inspection_bundle
-  has_many :issue_values, -> { order_by "order" }, :dependent => :destroy
+  has_many :issue_values, :dependent => :destroy
   has_many :inspection_atoms, :through => :issue_values
   
-  scope :status, -> (status) { where :issues => {:issue_status_id => status} }
+  validates :inspection_item_ids, presence: true
   
+  scope :status, -> (status) { where :issues => {:issue_status_id => status} }
+
   after_save :update_inspection_values
   
   delegate :title, :to => :inspection_bundle

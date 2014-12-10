@@ -1,17 +1,32 @@
 <h3><%= t :'issues' %></h3>
 <hr />
 
+<div class="toolbar">
+  <div class="toolbar-left">
+  <%= render 'layouts/filters/issue' %>
+  </div>
+  <div class="toolbar-right">
+    <% if can_create_issue %>
+      <a href="<%= new_issue_path %>" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> New</a>
+    <% end %>
+  </div>
+</div>
 <table class="table table-">
   <thead>
     <tr>
-      <td>#</td><td>Name</td><td>Sex</td>
+      <td>#</td><td>Status</td><td>Name</td><td>Sex</td>
       <td></td>
     </tr>
   </thead>
   <tbody>
     <% @issues.each do |i| %>
     <tr>
-      <td><%= i.id %></td>
+      <td>
+        <label>
+          <input type="checkbox" /> <%= i.id %>
+        </label>
+      </td>
+      <td><%= i.issue_status.name%></td>
       <td><%= i.profile.firstname%> <%= i.profile.surname%></td>
       <td><%= i.profile.sex %></td>
       <td>

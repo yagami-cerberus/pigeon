@@ -1,8 +1,12 @@
-<h4><i class="fa fa-user"></i> Profile</h4>
+<h4><i class="fa fa-user"></i> Profile <div class="form-group"></h4>
 <%= render 'issues/profile_selector', :f => f %>
 <hr />
-
 <h4><i class="fa fa-tags"></i> Inspection</h4>
+<% if f.object.errors[:issue_bundles].present? %>
+<div class="alert alert-danger">
+  <% f.object.errors[:issue_bundles].each do |m| %><div><%=m%></div><% end %>
+</div>
+<% end %>
 <div class="form-group">
   <input type="hidden" id="bundle_searcher" />
 </div>

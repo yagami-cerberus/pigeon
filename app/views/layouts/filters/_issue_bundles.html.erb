@@ -1,9 +1,9 @@
 <form class="form-inline" data-form="filters" role="form">
   <div class="form-group">
-    <%= select :filter, :b, InspectionBundle.all.map {|b| ["[#{b.code}] #{b.title}", b.id]}, {} %>
+    <%= select :filter, :b, InspectionBundle.all.pluck(:code, :title, :id).map { |b| ["[#{b[0]}] #{b[1]}", b[2]] }, {}, {:class => 'form-control input-sm'} %>
   </div>
   <div class="form-group">
-    <%= select :filter, :s, IssueStatus.all.map {|s| ["#{s.name}", s.id]}, {} %>
+    <%= select :filter, :s, IssueStatus.all.pluck(:name, :id), {}, {:class => 'form-control input-sm'} %>
   </div>
   <button class='btn btn-default btn-sm' type='submit'>
     <%= t(:'shared.search')%>
