@@ -28,8 +28,12 @@ module UserExtention
   end
 
   def password=(value)
-    self.hashed_password = self.class.sha256_hash(value)
-    @password = value
+    if value.present?
+      self.hashed_password = self.class.sha256_hash(value)
+      @password = value
+    else
+      self.hashed_password = nil
+    end
   end
 
   def challenge_password(passwd)

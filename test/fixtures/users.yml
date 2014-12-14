@@ -2,28 +2,32 @@ sha256_test_user:
   username: "sha256_test_user"
   # Note: password = pigeon
   hashed_password: "SHA256:BfaxPXpd$51b5112a7f832e14b1bbe27b9371459dc22504b8b7ce571b580930484aeaa019"
-  name: "Test SHA256 Password"
+  firstname: "SHA256 Password"
+  lastname: "Unittest"
   email: "sha256_test@unittest.pigeon"
   flags: 1
 
 regular_user:
   username: "regular_user"
   hashed_password: <%= User.sha256_hash("moo~") %>
-  name: "Regular User"
+  firstname: "Regular User"
+  lastname: "Unittest"
   email: "regular@unittest.pigeon"
   flags: 1
 
 guest_user:
   username: "guest"
   hashed_password: <%= User.sha256_hash("dummy") %>
-  name: "Guest"
+  firstname: "Guest"
+  lastname: "Unittest"
   email: "guest@unittest.pigeon"
   flags: 1
 
 typist_user:
   username: "typist"
   hashed_password: <%= User.sha256_hash('unittest_account') %>
-  name: "Typist"
+  firstname: "Typist"
+  lastname: "Unittest"
   email: "typist@unittest.pigeon"
   flags: 1
   groups: typist_group
@@ -31,7 +35,8 @@ typist_user:
 researcher_user:
   username: "researcher"
   hashed_password: <%= User.sha256_hash('unittest_account') %>
-  name: "Researcher"
+  firstname: "Researcher"
+  lastname: "Unittest"
   email: "researcher@unittest.pigeon"
   flags: 1
   groups: researcher_group
@@ -39,7 +44,8 @@ researcher_user:
 manager_user:
   username: "manager"
   hashed_password: <%= User.sha256_hash('unittest_account') %>
-  name: "Manager"
+  firstname: "Manager"
+  lastname: "Unittest"
   email: "manager@unittest.pigeon"
   flags: 1
   groups: lab_managers
@@ -47,7 +53,8 @@ manager_user:
 leader_user:
   username: "leader"
   hashed_password: <%= User.sha256_hash('unittest_account') %>
-  name: "Leader"
+  firstname: "Leader"
+  lastname: "Unittest"
   email: "leader@unittest.pigeon"
   flags: 1
   groups: account_manager_group, product_manager_group, lab_managers, super_lab_managers
@@ -55,7 +62,8 @@ leader_user:
 admin_user:
   username: "admin"
   hashed_password: <%= User.sha256_hash('unittest_account') %>
-  name: "Test Admin"
+  firstname: "Test Admin"
+  lastname: "Unittest"
   email: "admin@unittest.pigeon"
   flags: 1
   groups: admin_group

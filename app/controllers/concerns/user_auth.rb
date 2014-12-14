@@ -57,18 +57,22 @@ end
 
 class RegularClaims
   def self.to_claim_session user
-    {:id => user.id, :identify => user.username,
-      :name => user.name, :email => user.email, :acl => user.grouped_permissions}
+    {:id => user.id, :identify => user.username, :firstname => user.firstname,
+      :lastname => user.lastname, :email => user.email, :acl => user.grouped_permissions}
   end
   
   def initialize(params = {})
     @params = params
   end
-  
-  def name
-    @params[:name]
+
+  def firstname
+    @params[:firstname]
   end
-  
+
+  def lastname
+    @params[:lastname]
+  end
+
   def identify
     @params[:identify]
   end
@@ -134,8 +138,12 @@ end
 class GuestClaims
   include Singleton
   
-  def name
+  def firstname
     "Guest"
+  end
+
+  def lastname
+    ""
   end
   
   def identify

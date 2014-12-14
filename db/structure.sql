@@ -69,6 +69,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: api_keys; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_keys (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    key character varying(64) NOT NULL,
+    secret_key character varying(128) NOT NULL,
+    flags integer DEFAULT 0 NOT NULL,
+    lastuse_at timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_keys_id_seq OWNED BY api_keys.id;
+
+
+--
 -- Name: groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -478,13 +513,14 @@ ALTER SEQUENCE user_groups_id_seq OWNED BY user_groups.id;
 CREATE TABLE users (
     id integer NOT NULL,
     username character varying(64) NOT NULL,
-    hashed_password character varying(128) NOT NULL,
-    name character varying(128) NOT NULL,
+    hashed_password character varying(255),
+    firstname character varying(128) NOT NULL,
     email character varying(128),
     flags integer DEFAULT 0 NOT NULL,
     lastlogin_at timestamp without time zone,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    lastname character varying(255) DEFAULT NULL::character varying NOT NULL
 );
 
 
@@ -505,6 +541,13 @@ CREATE SEQUENCE users_id_seq
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY api_keys ALTER COLUMN id SET DEFAULT nextval('api_keys_id_seq'::regclass);
 
 
 --
@@ -596,6 +639,14 @@ ALTER TABLE ONLY user_groups ALTER COLUMN id SET DEFAULT nextval('user_groups_id
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_keys
+    ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -703,6 +754,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_api_keys_on_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_api_keys_on_key ON api_keys USING btree (key);
+
+
+--
 -- Name: index_issue_status_permissions_on_issue_status_id_and_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -767,4 +825,10 @@ INSERT INTO schema_migrations (version) VALUES ('20141128034123');
 INSERT INTO schema_migrations (version) VALUES ('20141202121340');
 
 INSERT INTO schema_migrations (version) VALUES ('20141202130656');
+
+INSERT INTO schema_migrations (version) VALUES ('20141214091909');
+
+INSERT INTO schema_migrations (version) VALUES ('20141214124448');
+
+INSERT INTO schema_migrations (version) VALUES ('20141214130951');
 

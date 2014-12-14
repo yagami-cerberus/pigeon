@@ -26,7 +26,7 @@ module Pigeon
         case disabled
         when 't'
           query.disabled?(true)
-        when 'n'
+        when 'f'
           query.disabled?(false)
         else
           query

@@ -6,12 +6,12 @@ class Settings::UserController < ApplicationController
   }
 
   PASSWORD_FIELDS = [:password, :password_confirmation]
-  UPDATE_USER_FIELDS = [:name, :email, {:group_ids => []}]
+  UPDATE_USER_FIELDS = [:firstname, :lastname, :email, {:group_ids => []}]
   CREATE_USER_FIELDS = [:username] + PASSWORD_FIELDS + UPDATE_USER_FIELDS
   
   def index
     @filter = Pigeon::Filters::UserFilter.new(params[:filter])
-    @current_page, @page_size, @users = @filter.paginate(@filter.filter(User), params[:p])
+    @current_page, @page_size, @users = @filter.paginate(@filter.filter(User).order('username'), params[:p])
   end
 
   def new
@@ -50,20 +50,34 @@ class Settings::UserController < ApplicationController
     User.find(params[:id]).destroy
     redirect_to (request.referer || user_index)
   end
-  
+
   def edit_password
     @user = User.find(params[:id])
+    render :partial => 'edit_password_modal'
   end
-  
+
   def reset_password
     @user = User.find(params[:id])
-    if @user.update_attributes(params.require(:user).permit(PASSWORD_FIELDS))
-      redirect_to (params[:refer].presence || settings_user_path(@user))
+    if params[:remove]
+      @success = @user.update_attribute('hashed_password', nil)
+      redirect_to request.referer
     else
-      render :template => 'settings/user/edit_password'
+      @success = @user.update_attributes(params.require(:user).permit(PASSWORD_FIELDS))
+      render :partial => 'edit_password_modal'
     end
   end
-  
+
+  def add_apikey
+    u = User.find(params[:id])
+    @apikey = ApiKey.create u
+    render :partial => 'add_api_key_modal'
+  end
+
+  def delete_apikey
+    User.find(params[:id]).api_keys.find_by_key(params[:key]).destroy
+    redirect_to request.referer
+  end
+
   def set_disabled
     @user = User.find(params[:id])
     case params[:flag]

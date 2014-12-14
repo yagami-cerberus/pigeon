@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         get 'edit_password'
         post 'reset_password'
         post 'set_disabled'
+        post 'add_apikey', 'delete_apikey'
       end
     end
   end
