@@ -8,8 +8,10 @@ class IssueBundle < ActiveRecord::Base
 
   scope :status, -> (status) { where :issues => {:issue_status_id => status} }
 
-  after_save :update_inspection_values, :if => -> (m) { m.changed.include? :inspection_item_ids }
-  
+  after_save :update_inspection_values, :if => -> (m) {
+    m.changed.include? "inspection_item_ids"
+  }
+
   delegate :title, :to => :inspection_bundle
   delegate :code, :to => :inspection_bundle
 
@@ -34,15 +36,15 @@ class IssueBundle < ActiveRecord::Base
       pluck :id
 
     self.issue_values.reload.each do |v|
-      if add_ids.include? v.inspection_item_id
-        add_ids.delete v.inspection_item_id
+      if add_ids.include? v.inspection_atom_id
+        add_ids.delete v.inspection_atom_id
       else
         v.destroy
       end
     end
 
     add_ids.each do |id|
-      self.issue_values.create :inspection_atom_id => id
+      self.issue_values.create! :inspection_atom_id => id
     end
   end
 

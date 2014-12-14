@@ -1,0 +1,13 @@
+<form class="form-inline" data-form="filters" role="form">
+  <div class="form-group">
+    <%= select :filter, :s, issue_status_select_options, {}, {:class => 'form-control input-sm'} %>
+  </div>
+  <div class="form-group">
+  </div>
+  <button class='btn btn-default btn-sm' type='submit'>
+    <%= t(:'shared.search')%>
+  </button>
+</form>
+<script type="text/javascript">
+$("#filter_b").select2({width: "300px"});
+</script>
