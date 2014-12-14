@@ -1,34 +1,68 @@
 <h3>Inspection#<%= @bundle.id%> <%= @bundle.title %></h3>
 <hr />
-<h4><i class="fa fa-info"></i> Inspection</h4>
+<h4><i class="fa fa-info"></i> Information</h4>
 <div class="container-fluid form-horizontal">
-  Issue: #<%= @bundle.issue_id %>
+  <div>Issue: <%= link_to_if true, "##{@bundle.issue_id}", issue_path(@bundle.issue_id)%></div>
+  <div>Birthday: <%= @bundle.issue.profile.formated_birthday %></div>
+  <div>Sex: <%= t @bundle.issue.profile.sex %></div>
 </div>
 <hr />
-
 <h4><i class="fa fa-cubes"></i> Items</h4>
 <%= form_for @bundle, {action: 'update'} do %>
-  <table class="table">
-    <tbody>
+  <div class="container-fluid">
+    <% editable = @bundle.can_update?(claims) %>
     <% @bundle.inspections.each do |item, atoms| %>
-      <tr><th colspan=3><%= item.title %></th></tr>
-      <% atoms.each do |a| %>
-      <tr>
-        <td>
-          <%= a.title %>
-        </td>
-        <td>
-          <%= inspection_type_field a, "item" %>
-        </td>
-        <td>
-          <% if a.editor %>
-          <%= a.editor.name %> at <%=f_datetime(a.updated_at)%>
-          <% end %>
-        </td>
-      </tr>
-      <% end %>
+      <div class="container-fluid inspections">
+        <div class="h5"><i class="fa fa-cube"></i> <%= item.title %></div>
+        <% atoms.each do |a| %>
+          <div class="row">
+            <div class="col-sm-4 inspection-label"><%= a.title %></div>
+            <div class="col-sm-3">
+              <%= inspection_type_field a, "item" %>
+            </div>
+            <div class="col-sm-3">
+              <span class="inspection-tip" data-toggle="tooltip" data-placement="bottom" title="<%= a.type_handler.describe %>"><i class="fa fa-info-circle"></i></span>
+              <% if a.editor %>
+                <div><%= a.editor.name %></div>
+                <div class="text-muted"><small><%=l a.updated_at.localtime, :format => :short %></small></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-    </tbody>
-  </table>
-  <button type="submit">GO</button>
+  </div>
+  <div class="toolbar">
+    <div class="toolbar-right">
+      <% if @bundle.locked %>
+        <% if @bundle.can_unlock?(claims) %>
+          <button type="submit" class="btn btn-sm btn-danger" name="operation" value="rollback"><i class="fa fa-unlock-alt"></i> Unlock</button>
+        <% end %>
+      <% else %>
+        <% if editable %>
+          <div class="btn-group dropup text-left">
+            <button type="submit" class="btn btn-primary" name="operation" value="save"><i class="fa fa-save"></i> Save</button>
+            <% if @bundle.can_lock?(claims) %>
+              <button type="submit" class="hide" id="submit_data" name="operation" value="submit"></button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">More actions</span>
+                </button>
+              <ul class="dropdown-menu dropup dropdown-menu-right" role="menu">
+                <li><a href="javascript:void(0);" onclick="$('#submit_data').trigger('click')"><i class="fa fa-lock"></i> Submit</a></li>
+              </ul>
+            <% end %>
+          </div>
+        <% elsif @bundle.can_lock?(claims) %>
+          <button type="submit" class="btn btn-sm btn-primary" name="operation" value="submit"><i class="fa fa-lock"></i> Submit</button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>

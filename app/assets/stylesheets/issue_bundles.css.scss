@@ -1,3 +1,35 @@
-// Place all the styles related to the issue_bundles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.inspections {
+    border-bottom: 1px #eee solid;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .row {
+        margin-bottom: 4px;
+    }
+
+    .inspection-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 4px;
+    }
+
+    .inspection-tip {
+        padding-top: 4px;
+        float: left;
+        margin-left: -23px;
+    }
+
+    .tooltip-inner {
+      white-space: nowrap !important;
+    }
+}
+
+table.inspect-results {
+    td {
+        vertical-align: middle !important;
+    }
+}

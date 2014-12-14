@@ -20,16 +20,28 @@ class IssueBundlesController < ApplicationController
   
   def update
     bundle = IssueBundle.find(params[:id])
-    editor = claims.model
-    
-    counter = 0
-    params[:item].each do |atom_id, payload|
-      a = bundle.issue_values.find_by_id(atom_id)
-      counter += 1 if a.update_value(payload, editor) if a
-    end if params[:item]
-    
-    # TODO: localize message
-    flash[:success] = "#{counter} value updated."
+
+    if bundle.can_update?(claims)
+      editor = claims.model
+
+      counter = 0
+      params[:item].each do |atom_id, payload|
+        a = bundle.issue_values.find_by_id(atom_id)
+        counter += 1 if a.update_value(payload, editor) if a
+      end if params[:item]
+
+      # TODO: localize message
+      flash[:success] = "#{counter} value updated."
+    end
+
+    if bundle.can_lock?(claims) && params[:operation] == 'submit'
+      bundle.update_attribute('locked', true)
+    end
+
+    if bundle.can_unlock?(claims) && params[:operation] == 'rollback'
+      bundle.update_attribute('locked', false)
+    end
+
     redirect_to issue_bundle_path(bundle)
   end
   

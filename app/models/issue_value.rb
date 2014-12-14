@@ -28,6 +28,6 @@ class IssueValue < ActiveRecord::Base
   end
 
   def value_error?
-    
+    inspection_atom.value_error? self.data
   end
 end

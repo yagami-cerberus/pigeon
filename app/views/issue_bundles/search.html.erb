@@ -21,14 +21,14 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Title</th><th>Group</th><th>Code</th><th>Items</th><th></th></tr>
+        <th>Issue Id</th><th>Id</th><th>Title</th><th>Items</th><th></th></tr>
     </thead>
     <tbody>
       <% @bundles.each do |c| %>
       <tr>
+        <td><%= c.issue_id%></td>
+        <td><%= c.id %></td>
         <td><%= c.title %></td>
-        <td></td>
-        <td></td>
         <td><%= c.inspection_items.pluck(:title).join('/') %></td>
         <td>
           <%= link_to 'Details', c %>

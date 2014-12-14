@@ -16,4 +16,8 @@ class InspectionAtom < ActiveRecord::Base
       @@_type_manager.get_type_by_name('numeric').new
     end
   end
+
+  def value_error?(data)
+    type_handler.value_error? data
+  end
 end

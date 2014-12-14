@@ -23,4 +23,11 @@ class Profile < ActiveRecord::Base
       self.sex_flag = nil
     end
   end
+
+  def formated_birthday
+    today = Date.today
+    age = today.year - birthday.year
+    age += 1 if birthday.change(:year => today.year) > today
+    "#{I18n.l birthday, :format => :simple} (#{I18n.t "date.years_old", :age => age})"
+  end
 end

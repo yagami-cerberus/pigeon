@@ -14,12 +14,4 @@ module ApplicationHelper
     render :partial => "layouts/inspection_type/fields/#{cls_name}", :locals => {
       :instance => instance, :handler => handler, :prefix => field_prefix}
   end
-  
-  def f_date(date)
-    date
-  end
-  
-  def f_datetime(datetime)
-    datetime
-  end
 end

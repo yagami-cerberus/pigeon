@@ -20,6 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    years_old: '%{age} years old'
+    formats:
+      simple: '%Y-%m-%d'
+  time:
+    formats:
+      short: '%Y-%m-%d %H:%M:%S %Z'
+  activerecord:
+    errors:
+      models:
+        issue:
+          attributes:
+            issue_bundles:
+              too_short: 'At least 1 inspection require.'
   shared:
     search: 'Search'
   nav:
@@ -33,6 +47,10 @@ en:
       catalog: 'My Account'
       profile: 'My Profile'
       change_passwd: 'Change Password'
+  issue:
+    change_status_success: 'Change issue status to %{status} successed.'
+    bundle:
+      too_short: 'At least %{count} bundle.'
   user:
     create_user: 'Create User'
     edit_user: 'Edit User'
