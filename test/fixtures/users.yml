@@ -17,7 +17,6 @@ regular_user:
 
 guest_user:
   username: "guest"
-  hashed_password: <%= User.sha256_hash("dummy") %>
   firstname: "Guest"
   lastname: "Unittest"
   email: "guest@unittest.pigeon"

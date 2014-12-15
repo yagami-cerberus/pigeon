@@ -6,11 +6,11 @@ class UserAuthTest < ActionDispatch::IntegrationTest
 
     get '/'
     assert_redirected_to login_path
-    
+
     post login_path, :username => 'admin', :password => 'unittest_account', :to => '/'
     assert_redirected_to '/'
   end
-  
+
   def enable_users *usernames
     usernames.each do |username|
       u = User.find_by_login username

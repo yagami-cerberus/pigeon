@@ -1,0 +1,15 @@
+
+typist_user_key1:
+  user: typist_user
+  key: "abcdefghij"
+  secret_key: "1234567890qwertyuiopasdfghjklzxcvbnm"
+
+typist_user_key2:
+  user: typist_user
+  key: "greqwere"
+  secret_key: "mnbvcxzpoiuwqlkjhgfdsa0987654321"
+
+researcher_user_key:
+  user: researcher_user
+  key: "qzxswedcvfr"
+  secret_key: "qazsedcftgbhujmkoawsxdrfvgyhnjikolp"

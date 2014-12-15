@@ -1,0 +1,15 @@
+
+padding_issue_bundle1:
+  issue: padding_issue
+  inspection_bundle: bio_hb_bundle
+  inspection_item_ids: [201, 202]
+
+padding_issue_bundle2:
+  issue: padding_issue
+  inspection_bundle: bio_allergy_bundle
+  inspection_item_ids: [204]
+
+confirming_issue_bundle1:
+  issue: confirming_issue
+  inspection_bundle: gene_all_bundle
+  inspection_item_ids: [101]
