@@ -24,7 +24,7 @@ class IssueBundle < ActiveRecord::Base
   end
   
   def inspections
-    issue_values.includes(:inspection_atom).group_by &:inspection_item
+    issue_values.includes(:inspection_atom => :inspection_item).group_by &:inspection_item
   end
 
   def update_inspection_values
