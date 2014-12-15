@@ -31,7 +31,9 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  
+
+  resources :samples, :format => false
+
   namespace :settings do
     resources :group, :format => false
     

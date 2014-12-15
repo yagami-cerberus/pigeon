@@ -9,6 +9,8 @@ class Issue < ActiveRecord::Base
   accepts_nested_attributes_for :issue_bundles, :allow_destroy => true
   validates :issue_bundles, length: { minimum: 1 }
 
+  has_many :issue_values, :through => :issue_bundles
+
   has_many :samples
   accepts_nested_attributes_for :samples, :allow_destroy => true
 

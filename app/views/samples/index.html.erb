@@ -1,0 +1,35 @@
+<h3><%= t 'samples' %></h3>
+<hr />
+
+<div class="toolbar">
+  <div class="toolbar-left">
+  <%= render 'layouts/filters/sample' %>
+  </div>
+  <div class="toolbar-right">
+    <% if can_create_issue %>
+      <a href="<%= new_issue_path %>" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> New</a>
+    <% end %>
+  </div>
+</div>
+<table class="table table-">
+  <thead>
+    <tr>
+      <th>No</th><th>Type</th><th>Quantity</th>
+      <th>Inspection Items</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @samples.each do |s| %>
+    <tr>
+      <td><%= s.no %></td>
+      <td><%= s.sample_type %></td>
+      <td><%= s.quantity %></td>
+      <td>
+        <% s.issue_bundles.each do |b| %>
+          <%= b.title %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
